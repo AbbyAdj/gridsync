@@ -1,0 +1,570 @@
+/* RaceCountdown.css */
+
+/* Base container */
+.race-countdown-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated background orbs */
+.background-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.background-orb-1 {
+  top: 40px;
+  left: 40px;
+  width: 288px;
+  height: 288px;
+  background: rgba(59, 130, 246, 0.1);
+  animation-delay: 0s;
+}
+
+.background-orb-2 {
+  bottom: 80px;
+  right: 80px;
+  width: 384px;
+  height: 384px;
+  background: rgba(6, 182, 212, 0.1);
+  animation-delay: 1s;
+}
+
+.background-orb-3 {
+  top: 50%;
+  left: 33%;
+  width: 256px;
+  height: 256px;
+  background: rgba(139, 92, 246, 0.1);
+  animation-delay: 2s;
+}
+
+/* Main content container */
+.main-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header section */
+.race-header {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.race-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  background: linear-gradient(90deg, #60a5fa, #22d3ee, #60a5fa);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientMove 3s ease infinite;
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+.race-title:hover {
+  transform: scale(1.05);
+}
+
+.race-location {
+  font-size: 1.5rem;
+  color: #93c5fd;
+  margin-bottom: 12px;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 200ms;
+  opacity: 0;
+}
+
+.race-country {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 400ms;
+  opacity: 0;
+}
+
+/* Countdown section */
+.countdown-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 48px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 600ms;
+  opacity: 0;
+}
+
+.countdown-container:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+}
+
+.countdown-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #93c5fd;
+  transition: color 0.3s ease;
+}
+
+.countdown-container:hover .countdown-title {
+  color: #dbeafe;
+}
+
+.countdown-timer {
+  font-size: 2.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  transition: transform 0.3s ease;
+  animation: pulseSubtle 2s ease-in-out infinite;
+}
+
+.countdown-container:hover .countdown-timer {
+  transform: scale(1.05);
+}
+
+.countdown-bar {
+  width: 128px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #22d3ee, #3b82f6);
+  background-size: 300% 300%;
+  margin: 0 auto;
+  border-radius: 2px;
+  animation: gradientMove 3s ease infinite;
+  transition: height 0.3s ease;
+}
+
+.countdown-container:hover .countdown-bar {
+  height: 8px;
+}
+
+.countdown-title,
+.countdown-timer,
+.countdown-bar {
+  position: relative;
+  z-index: 2;
+}
+
+/* Sessions section */
+.sessions-section {
+  text-align: center;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 800ms;
+  opacity: 0;
+}
+
+.sessions-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: #93c5fd;
+  transition: color 0.3s ease;
+}
+
+.sessions-title:hover {
+  color: #dbeafe;
+}
+
+.sessions-container {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+/* Race Block Styles */
+.race-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* Staggered animation delays */
+.race-block:nth-child(1) { animation-delay: 1000ms; }
+.race-block:nth-child(2) { animation-delay: 1150ms; }
+.race-block:nth-child(3) { animation-delay: 1300ms; }
+.race-block:nth-child(4) { animation-delay: 1450ms; }
+.race-block:nth-child(5) { animation-delay: 1600ms; }
+
+.race-block-circle-container {
+  position: relative;
+}
+
+.race-block-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.race-block:hover .race-block-circle {
+  transform: scale(1.1) rotate(12deg);
+}
+
+.race-block-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(1);
+}
+
+.race-block:hover .race-block-ring {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+.race-block-indicator {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.race-block:hover .race-block-indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.race-block-indicator-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.race-block-datetime {
+  font-size: 0.875rem;
+  text-align: center;
+  max-width: 96px;
+  transition: all 0.3s ease;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.race-block:hover .race-block-datetime {
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Session Colors */
+.session-practice-1, .session-practice-2 {
+  background-color: #3b82f6;
+}
+
+.session-practice-3 {
+  background-color: #8b5cf6;
+}
+
+.session-qualifying {
+  background-color: #f59e0b;
+}
+
+.session-race {
+  background-color: #ef4444;
+}
+
+/* Glow effects on hover */
+.race-block:hover .session-practice-1,
+.race-block:hover .session-practice-2 {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.6);
+}
+
+.race-block:hover .session-practice-3 {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.6);
+}
+
+.race-block:hover .session-qualifying {
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.6), 0 0 60px rgba(245, 158, 11, 0.6);
+}
+
+.race-block:hover .session-race {
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.6), 0 0 60px rgba(239, 68, 68, 0.6);
+}
+
+/* Loading animation */
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loading-content {
+  text-align: center;
+  animation: bounce 1s infinite;
+}
+
+.loading-spinner {
+  width: 64px;
+  height: 64px;
+  border: 4px solid transparent;
+  border-bottom: 4px solid #60a5fa;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  color: #93c5fd;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .race-title {
+    font-size: 2.5rem;
+  }
+  
+  .countdown-timer {
+    font-size: 3rem;
+  }
+  
+  .sessions-container {
+    gap: 24px;
+  }
+  
+  .race-block-circle {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* F1TrackInfo.css */
+.track-info-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 20px 0;
+  transition: all 0.5s ease;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 600ms; /* optional, like countdown */
+  opacity: 0;
+}
+
+.track-info-container:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+  transform: translateY(-4px); /* optional subtle lift */
+}
+
+.track-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.track-image-wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  flex-shrink: 0;
+}
+
+.track-image {
+  width: 200px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.track-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.track-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.track-subtitle {
+  font-size: 1.2rem;
+  color: #93c5fd;
+  margin: 0 0 15px 0;
+}
+
+.track-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  min-width: 80px;
+}
+
+.stat-item-highlighted {
+  background: rgba(96, 165, 250, 0.2);
+  border-color: rgba(96, 165, 250, 0.3);
+  min-width: 90px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #93c5fd;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  align-content: center;
+  margin-top: 10px;
+}
+.sub-stat-value {
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .track-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .track-details {
+    min-width: unset;
+  }
+  
+  .track-stats {
+    justify-content: center;
+  }
+}
